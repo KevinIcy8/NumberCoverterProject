@@ -25,12 +25,68 @@ public class NumberConverter {
         return o;
     }
 
+    public static boolean validBase(String choice){
+        String numbers = "0123456789";
+        for(int i = 0; i < choice.length(); i++){
+            String eachNumber = choice.substring(i,i+1);
+            int count = 0;
+            if(!(numbers.contains(eachNumber))){
+                count++;
+            }
+            if(count>0){
+                return false;
+            }
+            else{
+                return true;
+            }
+
+        }
+        return true;
+    }
+
+    public static boolean validNumber(String number, String base){
+        for(int i = 0; i < number.length(); i++){
+            String eachNumber = number.substring(i,i+1);
+            int count = 0;
+            if(Integer.parseInt(eachNumber) >= Integer.parseInt(base)){
+                count++;
+            }
+            if(count>0){
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+        return true;
+    }
+
     public int[] getDigits() {
         return digits;
     }
 
+    public String displayNormalNumber(int[] conversion){
+        String o = "";
+        for (int i = 0; i < conversion.length; i++) {
+            o = o + conversion[i];
+        }
+        o = o + "\n";
+        return o;
+    }
+
     public int[] convertToDecimal() {
-        return null;
+        int initialPower = digits.length - 1;
+        int sum = 0;
+        for(int i = 0; i < digits.length; i++){
+            sum = sum + (digits[i] * (int)Math.pow(base, initialPower));
+            initialPower--;
+        }
+        String sumString = String.valueOf(sum);
+        int [] decimal = new int[sumString.length()];
+        for(int i = 0; i < decimal.length; i++){
+            decimal[i] = Integer.parseInt(sumString.substring(i,i+1));
+        }
+        return decimal;
     }
 
     public int[] convertToBinary() {
@@ -53,7 +109,9 @@ public class NumberConverter {
             }
         }
         if(base == 8){
+            for(int i = 0; i < digits.length; i++){
 
+            }
         }
         return binary;
     }
@@ -74,6 +132,9 @@ public class NumberConverter {
                 quotient = quotient/8;
                 octal[i-1] = input;
             }
+        }
+        else if(base == 2){
+
         }
         return octal;
     }
