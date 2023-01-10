@@ -18,7 +18,7 @@ class ConverterRunner {
 
         System.out.print("Enter your number: ");
         String number = s.nextLine();
-        while(!(NumberConverter.validNumber(number,choice))){
+        while(!(NumberConverter.validNumber(number, choice))){
             System.out.println("You entered an invalid number");
         }
         int n = Integer.parseInt(number);
@@ -27,15 +27,15 @@ class ConverterRunner {
 
         NumberConverter nc = new NumberConverter(n, base);
         if(base == 10){
-            System.out.println("\nBinary Number: " + nc.displayNormalNumber(nc.convertToBinary()));
-            System.out.println("Octal Number: " + nc.displayNormalNumber(nc.convertToOctal()));
+            System.out.println("\nBinary Number: " + nc.displayNormalNumber(nc.convertToBinary(nc.displayNormalNumber(nc.getDigits()))));
+            System.out.println("Octal Number: " + nc.displayNormalNumber(nc.convertToOctal(nc.getDigits())));
         }
         else if(base == 2){
             System.out.println("\nDecimal Number: " + nc.displayNormalNumber(nc.convertToDecimal()));
-            System.out.println("Octal Number: " + nc.displayNormalNumber(nc.convertToOctal()));
+            System.out.println("Octal Number: " + nc.displayNormalNumber(nc.convertToOctal(nc.convertToDecimal())));
         }
         else if(base == 8){
-            System.out.println("\nBinary Number: " + nc.displayNormalNumber(nc.convertToBinary()));
+            System.out.println("\nBinary Number: " + nc.displayNormalNumber(nc.convertToBinary(nc.displayNormalNumber(nc.convertToDecimal()))));
             System.out.println("Decimal Number: " + nc.displayNormalNumber(nc.convertToDecimal()));
         }
         int[] digits = nc.getDigits();

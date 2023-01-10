@@ -51,7 +51,7 @@ public class NumberConverter {
             if(Integer.parseInt(eachNumber) >= Integer.parseInt(base)){
                 count++;
             }
-            if(count>0){
+            if(count > 0){
                 return false;
             }
             else{
@@ -89,34 +89,27 @@ public class NumberConverter {
         return decimal;
     }
 
-    public int[] convertToBinary() {
+    public int[] convertToBinary(String decimal) {
         int binaryIncrement = 1;
         int count = 0;
-        int[]binary = new int[count];
-        if(base == 10){
-            while(binaryIncrement <= number){
+        int intNumber = Integer.parseInt(decimal);
+        while(binaryIncrement <= intNumber){
                 count++;
                 binaryIncrement = binaryIncrement * 2;
-            }
-            binary = new int[count];
-            binary[0] = 1;
-            int remainder = number - (int) Math.pow(2,binary.length-1);
-            for(int i = 1; i < binary.length; i++){
-                if(remainder >= (int) Math.pow(2,binary.length-1-i)){
-                    binary[i] = 1;
-                    remainder = remainder - (int) Math.pow(2,binary.length-1-i);
-                }
-            }
         }
-        if(base == 8){
-            for(int i = 0; i < digits.length; i++){
-
+        int[]binary = new int[count];
+        binary[0] = 1;
+        int remainder = intNumber - (int) Math.pow(2,binary.length-1);
+        for(int i = 1; i < binary.length; i++){
+            if(remainder >= (int) Math.pow(2,binary.length-1-i)){
+                binary[i] = 1;
+                remainder = remainder - (int) Math.pow(2,binary.length-1-i);
             }
         }
         return binary;
     }
 
-    public int[] convertToOctal() {
+    public int[] convertToOctal(int[] decimal) {
         int quotient = number;
         int octal[] = new int[quotient];
         int count = 0;
